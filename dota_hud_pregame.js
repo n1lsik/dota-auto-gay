@@ -790,6 +790,8 @@ function OnShowDrawCard(keys){
             }
 
             /*END-DRAWSTAT*/ 
+			
+			find_dota_hud_element('rank_draw_card_' + i).style.color = ""; // сбрасываем цвета
             
 			var color_change = false;
 			
