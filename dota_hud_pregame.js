@@ -658,6 +658,22 @@ function OnShowTime(keys) {
     }
 }
 
+var MainTimer;
+
+function DrawChanceMy() {
+	var courier_level = Entities.GetLevel(courier_id);
+	
+	 $.Each(hero_id_list, function(item) {
+		var tmp_ele = find_dota_hud_element(item);
+		if (tmp_ele) {
+			var tmp_ret = calculate_draw_prop(item, hero_counts, courier_level, size_cost_pool);
+			var hero_perc_avail = tmp_ret[0];
+			tmp_ele.text = tmp_ret[2] + '-' + hero_perc_avail + '%';
+			tmp_ele.style['color'] = tmp_ret[1];
+		} 
+	});  
+}
+
 function OnBattleInfo(data) {
     var cur_round = data.round;
     var courier_level_round = Entities.GetLevel(courier_id);
@@ -665,6 +681,11 @@ function OnBattleInfo(data) {
     /*START-DRAWSTAT*/  
 
     if (cur_round > 0 && data.type != 'prepare') {
+		
+		// setTimeout(function() { 
+		MainTimer = setInterval(DrawChanceMy, 5 * 1000); // раз в 5 сек
+		// }, 20 * 1000);
+		
         hero_counts = getCurrentChamps();
         size_cost_pool = get_total_size_of_pool(hero_counts, courier_level_round);
 
