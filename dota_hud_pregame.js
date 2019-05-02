@@ -724,7 +724,11 @@ function OnBattleInfo(data) {
     }
 
 };
-function OnShowDrawCard(keys){
+function OnShowDrawCard(keys) {
+	
+	$.Msg("say я заррорил еба боба");
+	
+	var arrToChat = [];
     
     var courier_level = Entities.GetLevel(courier_id);
 
@@ -788,6 +792,8 @@ function OnShowDrawCard(keys){
             if (champ_name == 'Io') {
                 hero_perc_avail = 0.3;
             }
+			
+			arrToChat.push(champ_name);
 
             /*END-DRAWSTAT*/			
 			
@@ -847,6 +853,9 @@ function OnShowDrawCard(keys){
             }
         }
     })
+	
+	$.Msg("say мне выпали: " + arrToChat.join(', '));
+	
 }
 
 //In reality this method is called every time a player's HP or Gold changes (mp for gold)
