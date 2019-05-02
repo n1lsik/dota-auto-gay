@@ -789,10 +789,8 @@ function OnShowDrawCard(keys){
                 hero_perc_avail = 0.3;
             }
 
-            /*END-DRAWSTAT*/ 
+            /*END-DRAWSTAT*/			
 			
-			find_dota_hud_element('rank_draw_card_' + i).style.color = "white"; // сбрасываем цвета
-            
 			var color_change = false;
 			
             for (var key in hero_dict) {
@@ -808,13 +806,25 @@ function OnShowDrawCard(keys){
                 var template = '<Label text="(' + hero_in_play + ' / ' + hero_perc_avail + '%)" id="rank_draw_card_' + i + '" style = "font-size: 18px; font-weight: bold; width: 250px; text-align: center; margin-top: 333px; margin-left: 15px; z-index: 600;"/> ';
             } else {
                 var template = '<Label text=" " id="rank_draw_card_' + i + '" style = "font-size: 18px; font-weight: bold; width: 250px; text-align: center; margin-top: 333px; margin-left: 15px; z-index: 600;"/> ';
-			} 
+			}		
 			
 			//$.Msg("_____ " + template + " __________");
 			
             if (!find_dota_hud_element('panel_hero_draw_card_' + i).FindChild('rank_draw_card_' + i)) {
                 parentPanel.BCreateChildren(template);
+				try {
+					find_dota_hud_element('rank_draw_card_' + i).style.color = "white"; // сбрасываем цвета
+					$.Msg("Сбросили цвета в 1 случае");
+				} catch (err) {
+					
+				}				
             } else {
+				try {
+					find_dota_hud_element('rank_draw_card_' + i).style.color = "white"; // сбрасываем цвета
+					$.Msg("Сбросили цвета в 2 случае");
+				} catch (err) {
+					
+				}
                 if (DISPLAY_DRAW_PROB && DISPLAY_TIER) {
 					if (color_change == true) {
 						find_dota_hud_element('rank_draw_card_' + i).style.color = "red";
