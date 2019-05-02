@@ -1,4 +1,3 @@
-
 // Custom UI code
 
 (function () {
