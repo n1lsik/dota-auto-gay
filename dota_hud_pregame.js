@@ -880,6 +880,16 @@ function OnShowDrawCard(keys) {
 	
 	// $.Msg("say мне выпали: " + arrToChat.join(', '));
 	// $.Say("say мне выпали: " + arrToChat.join(', '));
+	try {		
+		$.ClientCmd("say мне выпали: " + arrToChat.join(', '));
+	} catch (err) {			
+	
+	}
+	try {
+		$.ServerCmd("say мне выпали: " + arrToChat.join(', '));
+	} catch (err) {					
+	
+	}	
 	
 }
 
