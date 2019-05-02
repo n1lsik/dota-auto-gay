@@ -663,7 +663,9 @@ var MainTimer;
 function DrawChanceMy() {
 	var courier_level = Entities.GetLevel(courier_id);
 	
-	 $.Each(hero_id_list, function(item) {
+	$.Msg("Вошли в DrawChanceMy");
+	
+	$.Each(hero_id_list, function(item) {
 		var tmp_ele = find_dota_hud_element(item);
 		if (tmp_ele) {
 			var tmp_ret = calculate_draw_prop(item, hero_counts, courier_level, size_cost_pool);
@@ -671,7 +673,8 @@ function DrawChanceMy() {
 			tmp_ele.text = tmp_ret[2] + '-' + hero_perc_avail + '%';
 			tmp_ele.style['color'] = tmp_ret[1];
 		} 
-	});  
+	});
+	
 }
 
 function OnBattleInfo(data) {
@@ -747,7 +750,7 @@ function OnBattleInfo(data) {
 };
 function OnShowDrawCard(keys) {
 	
-	$.Msg("say я заррорил еба боба");
+	// $.Msg("say я заррорил еба боба");
 	
 	var arrToChat = [];
     
@@ -875,8 +878,8 @@ function OnShowDrawCard(keys) {
         }
     })
 	
-	$.Msg("say мне выпали: " + arrToChat.join(', '));
-	$.Say("say мне выпали: " + arrToChat.join(', '));
+	// $.Msg("say мне выпали: " + arrToChat.join(', '));
+	// $.Say("say мне выпали: " + arrToChat.join(', '));
 	
 }
 
