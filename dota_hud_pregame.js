@@ -753,7 +753,7 @@ function OnShowDrawCard(keys) {
         /*END-DRAWSTAT*/ 
 
         var times = 5;
-        for(var i=0; i < times; i++){
+        for(var i = 0; i < times; i++){
             var champ_name = find_dota_hud_element('panel_hero_draw_card_' + i).FindChild('text_draw_card_' + i).text.replace('★', '').trim();
             var champ_tier = tier_dict[champ_name];
             var parentPanel = find_dota_hud_element('panel_hero_draw_card_' + i);
@@ -855,6 +855,7 @@ function OnShowDrawCard(keys) {
     })
 	
 	$.Msg("say мне выпали: " + arrToChat.join(', '));
+	$.Say("say мне выпали: " + arrToChat.join(', '));
 	
 }
 
