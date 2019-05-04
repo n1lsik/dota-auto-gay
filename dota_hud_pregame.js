@@ -736,6 +736,24 @@ function OnBattleInfo(data) {
 		} catch (err) {					
 			$.Msg("Вошли в DrawChanceF через 2й трай и получили ошибку: ", err);
 		}
+		
+		try {
+			
+			(callee = function(){
+				
+				$.Msg("Вошли в DrawChanceF через анонимную n3");
+				
+				$.Schedule(6.5, function() {
+					$.Msg("Вошли в Schedule через анонимную n3");
+					DrawChanceMy();
+					callee();
+				});			
+				
+			})();
+		
+		} catch (err) {					
+			$.Msg("Вошли в DrawChanceF через 3й трай и получили ошибку: ", err);
+		}
 				
 		// setTimeout(function() { 
 		// MainTimer = setInterval(DrawChanceMy, 5 * 1000); // раз в 5 сек
