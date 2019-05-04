@@ -48,7 +48,7 @@ function getCurrentChamps() {
         }
     }
 
-    user_list = [];//ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    user_list = [];
     var enemy_list = [];
 
     $.Each(Entities.GetAllEntitiesByClassname('npc_dota_creature'), function(entity) {
@@ -669,6 +669,13 @@ function OnShowTime(keys) {
         parentPanelPortrait.BCreateChildren(template_gold);  
 
         // End
+		
+		// Test add Select tag
+		
+        var template_select = '<select><option>Пункт 1</option><option>Пункт 2</option></select>';
+        parentPanelPortrait.BCreateChildren(template_select); 		
+		
+		// end
 
         first_time = false;
 
