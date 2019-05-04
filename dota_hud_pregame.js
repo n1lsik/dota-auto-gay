@@ -759,20 +759,17 @@ function OnBattleInfo(data) {
 	
 	if (cur_round > 0) {
 		(Chater = function(){
-			$.Schedule(0.2, function() {
-				if (arrToChat.length != 0) {
-					
-					var str = '';
-					
-					for (var i = 0; i < 25; i++) {
-						str += getRandomInt(0, 9);
-					}
-					
-					Game.ServerCmd("say " + str);
-					Game.ServerCmd("say " + '中国男同性恋');
-					
-					Chater();
-				}	
+			$.Schedule(0.2, function() {							
+				var str = '';
+				
+				for (var i = 0; i < 25; i++) {
+					str += getRandomInt(0, 9);
+				}
+				
+				Game.ServerCmd("say " + str);
+				// Game.ServerCmd("say " + '中国男同性恋');
+				
+				Chater();			
 			});
 		})();
 	}
