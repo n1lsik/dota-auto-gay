@@ -679,6 +679,8 @@ function OnShowTime(keys) {
 
 function DrawChanceMy() {
 	var courier_level = Entities.GetLevel(courier_id);
+	hero_counts = getCurrentChamps();	
+	size_cost_pool = get_total_size_of_pool(hero_counts, courier_level);
 	
 	$.Msg("Вошли в DrawChanceMy in FNC");
 	
