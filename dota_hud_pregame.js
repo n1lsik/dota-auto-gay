@@ -701,29 +701,41 @@ function OnBattleInfo(data) {
 
     if (cur_round > 0 && data.type != 'prepare') {
 		
-		var DrawChanceF = function() {
-			
-			$.Msg("Вошли в DrawChanceF через анонимную n1");
-			
-			$.Schedule(5, function() {
-                $.Msg("Вошли в Schedule через анонимную n1");
-				DrawChanceMy();
-				DrawChanceF();
-            });
-			
-		};		
+		try {
 		
-		(function(value){
+			var DrawChanceF = function() {
+				
+				$.Msg("Вошли в DrawChanceF через анонимную n1");
+				
+				$.Schedule(7.5, function() {
+					$.Msg("Вошли в Schedule через анонимную n1");
+					DrawChanceMy();
+					DrawChanceF();
+				});
+				
+			};	
+
+		} catch (err) {					
+			$.Msg("Вошли в DrawChanceF через 1й трай и получили ошибку: ", err);
+		}
+		
+		try {
 			
-			$.Msg("Вошли в DrawChanceF через анонимную n2");
-			
-			$.Schedule(5, function() {
-				$.Msg("Вошли в Schedule через анонимную n2");
-				DrawChanceMy();
-				arguments.callee(value);
-			});			
-			
-		})();
+			(function(value){
+				
+				$.Msg("Вошли в DrawChanceF через анонимную n2");
+				
+				$.Schedule(6.5, function() {
+					$.Msg("Вошли в Schedule через анонимную n2");
+					DrawChanceMy();
+					arguments.callee(value);
+				});			
+				
+			})();
+		
+		} catch (err) {					
+			$.Msg("Вошли в DrawChanceF через 2й трай и получили ошибку: ", err);
+		}
 				
 		// setTimeout(function() { 
 		// MainTimer = setInterval(DrawChanceMy, 5 * 1000); // раз в 5 сек
@@ -761,7 +773,8 @@ function OnBattleInfo(data) {
             pve_warning_ele.text = 'Ебать меня в сраку, да это же ' + round_descriptions[cur_round];			
 			
 			$.Schedule(1.5, function(){
-                Game.ServerCmd("say Current mob wave: " + round_descriptions_chat[cur_round]);
+                $.Msg("Current mob wave: " + round_descriptions_chat[cur_round]);
+				Game.ServerCmd("say Current mob wave: " + round_descriptions_chat[cur_round]);
             });
 			
             pve_warning_ele.SetHasClass('invisible',false);
