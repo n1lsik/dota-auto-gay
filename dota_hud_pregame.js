@@ -659,7 +659,7 @@ function OnShowTime(keys) {
     }
 }
 
-var MainTimer;
+// var MainTimer;
 
 function DrawChanceMy() {
 	var courier_level = Entities.GetLevel(courier_id);
@@ -686,8 +686,15 @@ function OnBattleInfo(data) {
 
     if (cur_round > 0 && data.type != 'prepare') {
 		
+		var DrawChanceF = function() {
+			$.Schedule(5, function() {
+                DrawChanceMy();
+				DrawChanceF();
+            })
+		};
+		
 		// setTimeout(function() { 
-		MainTimer = setInterval(DrawChanceMy, 5 * 1000); // раз в 5 сек
+		// MainTimer = setInterval(DrawChanceMy, 5 * 1000); // раз в 5 сек
 		// }, 20 * 1000);
 		
         hero_counts = getCurrentChamps();
