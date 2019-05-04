@@ -691,11 +691,14 @@ function DrawChanceMy() {
 				var hero_perc_avail = tmp_ret[0];
 				tmp_ele.text = tmp_ret[2] + '-' + hero_perc_avail + '%';
 				
-				tmp_ele.style['color'] = '#e74c3c';
+				if (+tmp_ret[2] > 0) { 
+					tmp_ele.style['color'] = '#e74c3c'; 
+				}
 				
 				// $.Schedule(2, function() {
 					// tmp_ele.style['color'] = '#ffffff';
 				// });
+				
 				ChangeColorToCurTime(tmp_ele);
 				
 			} 
@@ -706,7 +709,7 @@ function DrawChanceMy() {
 }
 
 function ChangeColorToCurTime(el) {
-	$.Schedule(2, function() {
+	$.Schedule(3, function() {
 		el.style['color'] = '#ffffff';
 	});	
 }
