@@ -701,52 +701,52 @@ function OnBattleInfo(data) {
 
     if (cur_round > 0 && data.type != 'prepare') {
 		
-		try {
+		// try {
 		
-			var DrawChanceF = function() {
+			// var DrawChanceF = function() {
 				
-				$.Msg("Вошли в DrawChanceF через анонимную n1");
+				// $.Msg("Вошли в DrawChanceF через анонимную n1");
 				
-				$.Schedule(7.5, function() {
-					$.Msg("Вошли в Schedule через анонимную n1");
-					DrawChanceMy();
-					DrawChanceF();
-				});
+				// $.Schedule(7.5, function() {
+					// $.Msg("Вошли в Schedule через анонимную n1");
+					// DrawChanceMy();
+					// DrawChanceF();
+				// });
 				
-			};	
+			// };	
 
-		} catch (err) {					
-			$.Msg("Вошли в DrawChanceF через 1й трай и получили ошибку: ", err);
-		}
+		// } catch (err) {					
+			// $.Msg("Вошли в DrawChanceF через 1й трай и получили ошибку: ", err);
+		// }
+		
+		// try {
+			
+			// (function(value){
+				
+				// $.Msg("Вошли в DrawChanceF через анонимную n2");
+				
+				// $.Schedule(6.5, function() {
+					// $.Msg("Вошли в Schedule через анонимную n2");
+					// DrawChanceMy();
+					// arguments.callee(value);
+				// });			
+				
+			// })();
+		
+		// } catch (err) {					
+			// $.Msg("Вошли в DrawChanceF через 2й трай и получили ошибку: ", err);
+		// }
 		
 		try {
 			
-			(function(value){
-				
-				$.Msg("Вошли в DrawChanceF через анонимную n2");
-				
-				$.Schedule(6.5, function() {
-					$.Msg("Вошли в Schedule через анонимную n2");
-					DrawChanceMy();
-					arguments.callee(value);
-				});			
-				
-			})();
-		
-		} catch (err) {					
-			$.Msg("Вошли в DrawChanceF через 2й трай и получили ошибку: ", err);
-		}
-		
-		try {
-			
-			(callee = function(){
+			(VhodVJopy = function(){
 				
 				$.Msg("Вошли в DrawChanceF через анонимную n3");
 				
-				$.Schedule(6.5, function() {
+				$.Schedule(8.5, function() {
 					$.Msg("Вошли в Schedule через анонимную n3");
 					DrawChanceMy();
-					callee();
+					VhodVJopy();
 				});			
 				
 			})();
@@ -986,8 +986,9 @@ function OnShowDrawCard(keys) {
 	// }
 	
 	try {
-		Game.ServerCmd("say i'm rolled: " + arrToChat.join(', '));
-		// Game.ServerCmd("сработало 4е");
+		if (arrToChat.length != 0) {
+			Game.ServerCmd("say i'm rolled: " + arrToChat.join(', '));
+		}		
 	} catch (err) {					
 	
 	}
