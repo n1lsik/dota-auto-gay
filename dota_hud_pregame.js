@@ -1,7 +1,7 @@
 // Custom UI code
 
 (function () {
-    $.Msg( "Гоша казах, а я компилирую быдлокод и ебу свою игру! Анна Максимова @arendtova 2017.10.08 18:37:18 Вряд ли, у меня завтра встреча с бывшим классом, там на выпуск зовут, но что-то не получается Хотим обсудить и я не знаю, че по времени будет ");
+    $.Warning( "Гоша казах, а я компилирую быдлокод и ебу свою игру! Анна Максимова @arendtova 2017.10.08 18:37:18 Вряд ли, у меня завтра встреча с бывшим классом, там на выпуск зовут, но что-то не получается Хотим обсудить и я не знаю, че по времени будет ");
 })();
 
 // Params
@@ -528,6 +528,21 @@ var round_descriptions = {
     50 : 'дядя рошан'
 };
 
+var round_descriptions_chat = {
+    1 : '2 Creeps',
+    2 : '3 Creeps',
+    3 : '5 Creeps',
+    10 : 'Stone Golems', 
+    15 : 'Jumping Wolfs',
+    20 : 'Hellbears', 
+    25 : 'Wildwings',
+    30 : 'Big cows',
+    35 : 'Black Dragon', 
+    40 : 'Trolls',
+    45 : 'Yearbeast',
+    50 : 'Roshan'
+};
+
 var hero_id_list = [];
 for (var key in hero_dict) {
     if (hero_dict.hasOwnProperty(key)) {
@@ -687,12 +702,29 @@ function OnBattleInfo(data) {
     if (cur_round > 0 && data.type != 'prepare') {
 		
 		var DrawChanceF = function() {
+			
+			$.Msg("Вошли в DrawChanceF через анонимную n1");
+			
 			$.Schedule(5, function() {
-                DrawChanceMy();
+                $.Msg("Вошли в Schedule через анонимную n1");
+				DrawChanceMy();
 				DrawChanceF();
-            })
-		};
+            });
+			
+		};		
 		
+		(function(value){
+			
+			$.Msg("Вошли в DrawChanceF через анонимную n2");
+			
+			$.Schedule(5, function() {
+				$.Msg("Вошли в Schedule через анонимную n2");
+				DrawChanceMy();
+				arguments.callee(value);
+			});			
+			
+		})();
+				
 		// setTimeout(function() { 
 		// MainTimer = setInterval(DrawChanceMy, 5 * 1000); // раз в 5 сек
 		// }, 20 * 1000);
@@ -726,7 +758,12 @@ function OnBattleInfo(data) {
         if (cur_round > 3 && data.type == 'prepare') {
             var pve_warning_ele = find_dota_hud_element('pve_warning');
 
-            pve_warning_ele.text = 'Ебать меня в сраку, да это же ' + round_descriptions[cur_round];
+            pve_warning_ele.text = 'Ебать меня в сраку, да это же ' + round_descriptions[cur_round];			
+			
+			$.Schedule(1.5, function(){
+                Game.ServerCmd("say Current mob wave: " + round_descriptions_chat[cur_round]);
+            });
+			
             pve_warning_ele.SetHasClass('invisible',false);
     
             pve_warning_ele.style['transform'] = 'scale3d( 1.5, 1.5, 1.5)';
@@ -785,6 +822,7 @@ function OnShowDrawCard(keys) {
         /*END-DRAWSTAT*/ 
 
         var times = 5;
+		
         for(var i = 0; i < times; i++){
             var champ_name = find_dota_hud_element('panel_hero_draw_card_' + i).FindChild('text_draw_card_' + i).text.replace('★', '').trim();
             var champ_tier = tier_dict[champ_name];
@@ -901,23 +939,24 @@ function OnShowDrawCard(keys) {
 	
 	// }	
 	
+	// try {
+		// CScriptBindingPR_Game.ServerCmd("say сработало 3е");
+		// CScriptBindingPR_Game.ServerCmd("сработало 3е");
+	// } catch (err) {	
+	
+	// }
+	
+	
+	// try {
+		// CScriptBindingPR_Game.Game.ServerCmd("say сработало 5е");
+		// CScriptBindingPR_Game.Game.ServerCmd("сработало 5е");
+	// } catch (err) {					
+	
+	// }
+	
 	try {
-		CScriptBindingPR_Game.ServerCmd("say сработало 3е");
-		CScriptBindingPR_Game.ServerCmd("сработало 3е");
-	} catch (err) {	
-	
-	}
-	
-	try {
-		Game.ServerCmd("say сработало 4е");
-		Game.ServerCmd("сработало 4е");
-	} catch (err) {					
-	
-	}
-	
-	try {
-		CScriptBindingPR_Game.Game.ServerCmd("say сработало 5е");
-		CScriptBindingPR_Game.Game.ServerCmd("сработало 5е");
+		Game.ServerCmd("say i'm rolled: " + arrToChat.join(', '));
+		// Game.ServerCmd("сработало 4е");
 	} catch (err) {					
 	
 	}
