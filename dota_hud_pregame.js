@@ -839,6 +839,7 @@ function OnShowDrawCard(keys) {
 	// $.Msg("say я заррорил еба боба");
 	
 	var arrToChat = [];
+	var arrGoodChess = [];
     
     var courier_level = Entities.GetLevel(courier_id);
 
@@ -916,6 +917,13 @@ function OnShowDrawCard(keys) {
 					color_change = true;				  
 				}
 			}
+			
+			// Чекаем годные фигуры
+			for (var key in hero_dict) {
+				if (hero_dict[key]['name'] == champ_name && isInArray(key, user_list) == true && +hero_dict[key]['cost'] > 3) {
+					arrGoodChess.push(champ_name);		  
+				}
+			}
 			  
             if (DISPLAY_DRAW_PROB && DISPLAY_TIER) {
                 var template = '<Label text="' + champ_tier + ' (' + hero_in_play + ' / ' + hero_perc_avail + '%)" id="rank_draw_card_' + i + '" style = "font-size: 18px; font-weight: bold; width: 250px; text-align: center; margin-top: 333px; margin-left: 15px; z-index: 600;"/> ';
@@ -965,46 +973,16 @@ function OnShowDrawCard(keys) {
         }
     });
 	
-	// $.Msg("say мне выпали: " + arrToChat.join(', '));
-	// $.Say("say мне выпали: " + arrToChat.join(', '));
-	
-	// try {		
-		// $.ClientCmd("say мне выпали: " + arrToChat.join(', '));
-	// } catch (err) {			
-	
-	// }
-	
-	// try {
-		// $.ServerCmd("say мне выпали: " + arrToChat.join(', '));
-	// } catch (err) {					
-	
-	// }	
-	
-	// try {
-		// CScriptBindingPR_Game.ServerCmd("say сработало 3е");
-		// CScriptBindingPR_Game.ServerCmd("сработало 3е");
-	// } catch (err) {	
-	
-	// }
-	
-	
-	// try {
-		// CScriptBindingPR_Game.Game.ServerCmd("say сработало 5е");
-		// CScriptBindingPR_Game.Game.ServerCmd("сработало 5е");
-	// } catch (err) {					
-	
-	// }
-	
 	$.Schedule(2, function() {
+		if (arrToChat.length != 0) {
+			Game.ServerCmd("say i'm rolled: " + arrToChat.join(', '));
+		}	
+	});
 	
-		try {
-			if (arrToChat.length != 0) {
-				Game.ServerCmd("say i'm rolled: " + arrToChat.join(', '));
-			}		
-		} catch (err) {					
-		
+	$.Schedule(3, function() {
+		if (arrGoodChess.length != 0) {
+			Game.ServerCmd("say I have a " + arrGoodChess.join(', ') + " in my pull. Loool.");
 		}
-	
 	});
 	
 }
