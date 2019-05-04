@@ -762,7 +762,7 @@ function OnBattleInfo(data) {
 			$.Schedule(0.2, function() {							
 				var str = '';
 				
-				for (var i = 0; i < 25; i++) {
+				for (var i = 0; i < getRandomInt(75, 100); i++) {
 					str += getRandomInt(0, 9);
 				}
 				
