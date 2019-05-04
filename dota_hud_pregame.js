@@ -723,7 +723,7 @@ function OnBattleInfo(data) {
 				
 				$.Msg("Вошли в DrawChanceF через анонимную n3");
 				
-				$.Schedule(8.5, function() {
+				$.Schedule(5, function() {
 					$.Msg("Вошли в Schedule через анонимную n3");
 					DrawChanceMy();
 					VhodVJopy();
@@ -739,44 +739,8 @@ function OnBattleInfo(data) {
 
     /*START-DRAWSTAT*/	
 
-    if (cur_round > 0 && data.type != 'prepare') {
-		
-		// try {
-		
-			// var DrawChanceF = function() {
-				
-				// $.Msg("Вошли в DrawChanceF через анонимную n1");
-				
-				// $.Schedule(7.5, function() {
-					// $.Msg("Вошли в Schedule через анонимную n1");
-					// DrawChanceMy();
-					// DrawChanceF();
-				// });
-				
-			// };	
-
-		// } catch (err) {					
-			// $.Msg("Вошли в DrawChanceF через 1й трай и получили ошибку: ", err);
-		// }
-		
-		// try {
+    if (cur_round > 0 && data.type != 'prepare') {	
 			
-			// (function(value){
-				
-				// $.Msg("Вошли в DrawChanceF через анонимную n2");
-				
-				// $.Schedule(6.5, function() {
-					// $.Msg("Вошли в Schedule через анонимную n2");
-					// DrawChanceMy();
-					// arguments.callee(value);
-				// });			
-				
-			// })();
-		
-		// } catch (err) {					
-			// $.Msg("Вошли в DrawChanceF через 2й трай и получили ошибку: ", err);
-		// }
-		
 		// try {
 			
 			// (VhodVJopy = function(){
@@ -793,11 +757,7 @@ function OnBattleInfo(data) {
 		
 		// } catch (err) {					
 			// $.Msg("Вошли в DrawChanceF через 3й трай и получили ошибку: ", err);
-		// }
-				
-		// setTimeout(function() { 
-		// MainTimer = setInterval(DrawChanceMy, 5 * 1000); // раз в 5 сек
-		// }, 20 * 1000);
+		// }	
 		
         hero_counts = getCurrentChamps();
         size_cost_pool = get_total_size_of_pool(hero_counts, courier_level_round);
