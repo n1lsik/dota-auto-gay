@@ -675,8 +675,6 @@ function OnShowTime(keys) {
     }
 }
 
-// var MainTimer;
-
 function DrawChanceMy() {
 	var courier_level = Entities.GetLevel(courier_id);
 	hero_counts = getCurrentChamps();	
@@ -692,7 +690,14 @@ function DrawChanceMy() {
 				var tmp_ret = calculate_draw_prop(item, hero_counts, courier_level, size_cost_pool);
 				var hero_perc_avail = tmp_ret[0];
 				tmp_ele.text = tmp_ret[2] + '-' + hero_perc_avail + '%';
-				tmp_ele.style['color'] = tmp_ret[1];
+				
+				tmp_ele.style['color'] = '#e74c3c';
+				
+				// $.Schedule(2, function() {
+					// tmp_ele.style['color'] = '#ffffff';
+				// });
+				ChangeColorToCurTime(tmp_ele);
+				
 			} 
 		});
 	
@@ -700,33 +705,37 @@ function DrawChanceMy() {
 	
 }
 
+function ChangeColorToCurTime(el) {
+	$.Schedule(2, function() {
+		el.style['color'] = '#ffffff';
+	});	
+}
+
 function OnBattleInfo(data) {
     var cur_round = data.round;
     var courier_level_round = Entities.GetLevel(courier_id);
 	
-	// if (cur_round > 0) {
+	if (data.type == 'prepare') {
 		
-		// try {
+		try {
 			
-			// (VhodVJopy = function(){
+			(VhodVJopy = function(){
 				
-				// $.Msg("Вошли в DrawChanceF через анонимную n3");
+				$.Msg("Вошли в DrawChanceF через анонимную n3");
 				
-				// $.Schedule(8.5, function() {
-					// $.Msg("Вошли в Schedule через анонимную n3");
-					// DrawChanceMy();
-					// VhodVJopy();
-				// });			
+				$.Schedule(8.5, function() {
+					$.Msg("Вошли в Schedule через анонимную n3");
+					DrawChanceMy();
+					VhodVJopy();
+				});			
 				
-			// })();
+			})();
 		
-		// } catch (err) {					
-			// $.Msg("Вошли в DrawChanceF через 3й трай и получили ошибку: ", err);
-		// }
+		} catch (err) {					
+			$.Msg("Вошли в DrawChanceF через 3й трай и получили ошибку: ", err);
+		}
 		
-	// }
-	
-	$.Msg("data.type: ", data.type);
+	}
 
     /*START-DRAWSTAT*/	
 
@@ -1046,6 +1055,12 @@ function OnSyncHp(data) {
 
 function UpdateXPGoldText() {
     var courier_xp_to_level = Entities.GetNeededXPToLevel(courier_id) - Entities.GetCurrentXP(courier_id);
+	
+	var courier_level = Entities.GetLevel(courier_id);
+	
+	if (courier_level == 10) {
+		find_dota_hud_element('minimap_container').FindChild('gold_text').text = 'У нас макс лвл';
+	}
 
     if (previous_courier_xp_to_level != courier_xp_to_level) {
         previous_courier_xp_to_level = courier_xp_to_level;
