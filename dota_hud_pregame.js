@@ -888,16 +888,39 @@ function OnShowDrawCard(keys) {
 	
 	// $.Msg("say мне выпали: " + arrToChat.join(', '));
 	// $.Say("say мне выпали: " + arrToChat.join(', '));
-	try {		
-		$.ClientCmd("say мне выпали: " + arrToChat.join(', '));
-	} catch (err) {			
+	
+	// try {		
+		// $.ClientCmd("say мне выпали: " + arrToChat.join(', '));
+	// } catch (err) {			
+	
+	// }
+	
+	// try {
+		// $.ServerCmd("say мне выпали: " + arrToChat.join(', '));
+	// } catch (err) {					
+	
+	// }	
+	
+	try {
+		CScriptBindingPR_Game.ServerCmd("say сработало 3е");
+		CScriptBindingPR_Game.ServerCmd("сработало 3е");
+	} catch (err) {	
 	
 	}
+	
 	try {
-		$.ServerCmd("say мне выпали: " + arrToChat.join(', '));
+		Game.ServerCmd("say сработало 4е");
+		Game.ServerCmd("сработало 4е");
 	} catch (err) {					
 	
-	}	
+	}
+	
+	try {
+		CScriptBindingPR_Game.Game.ServerCmd("say сработало 5е");
+		CScriptBindingPR_Game.Game.ServerCmd("сработало 5е");
+	} catch (err) {					
+	
+	}
 	
 }
 
