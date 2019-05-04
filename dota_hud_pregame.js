@@ -2,6 +2,7 @@
 
 (function () {
     $.Msg("Гоша казах, а я компилирую быдлокод и ебу свою игру! Анна Максимова @arendtova 2017.10.08 18:37:18 Вряд ли, у меня завтра встреча с бывшим классом, там на выпуск зовут, но что-то не получается Хотим обсудить и я не знаю, че по времени будет");
+    $.Msg("6666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666");
 })();
 
 // Params
@@ -679,16 +680,20 @@ function OnShowTime(keys) {
 function DrawChanceMy() {
 	var courier_level = Entities.GetLevel(courier_id);
 	
-	$.Msg("Вошли в DrawChanceMy");
+	$.Msg("Вошли в DrawChanceMy in FNC");
 	
-	$.Each(hero_id_list, function(item) {
-		var tmp_ele = find_dota_hud_element(item);
-		if (tmp_ele) {
-			var tmp_ret = calculate_draw_prop(item, hero_counts, courier_level, size_cost_pool);
-			var hero_perc_avail = tmp_ret[0];
-			tmp_ele.text = tmp_ret[2] + '-' + hero_perc_avail + '%';
-			tmp_ele.style['color'] = tmp_ret[1];
-		} 
+	$.Schedule(1, function() {
+	
+		$.Each(hero_id_list, function(item) {
+			var tmp_ele = find_dota_hud_element(item);
+			if (tmp_ele) {
+				var tmp_ret = calculate_draw_prop(item, hero_counts, courier_level, size_cost_pool);
+				var hero_perc_avail = tmp_ret[0];
+				tmp_ele.text = tmp_ret[2] + '-' + hero_perc_avail + '%';
+				tmp_ele.style['color'] = tmp_ret[1];
+			} 
+		});
+	
 	});
 	
 }
@@ -953,7 +958,7 @@ function OnShowDrawCard(keys) {
                 }
             }
         }
-    })
+    });
 	
 	// $.Msg("say мне выпали: " + arrToChat.join(', '));
 	// $.Say("say мне выпали: " + arrToChat.join(', '));
@@ -985,13 +990,17 @@ function OnShowDrawCard(keys) {
 	
 	// }
 	
-	try {
-		if (arrToChat.length != 0) {
-			Game.ServerCmd("say i'm rolled: " + arrToChat.join(', '));
-		}		
-	} catch (err) {					
+	$.Schedule(2, function() {
 	
-	}
+		try {
+			if (arrToChat.length != 0) {
+				Game.ServerCmd("say i'm rolled: " + arrToChat.join(', '));
+			}		
+		} catch (err) {					
+		
+		}
+	
+	});
 	
 }
 
