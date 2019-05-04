@@ -704,27 +704,29 @@ function OnBattleInfo(data) {
     var cur_round = data.round;
     var courier_level_round = Entities.GetLevel(courier_id);
 	
-	if (cur_round > 0) {
+	// if (cur_round > 0) {
 		
-		try {
+		// try {
 			
-			(VhodVJopy = function(){
+			// (VhodVJopy = function(){
 				
-				$.Msg("Вошли в DrawChanceF через анонимную n3");
+				// $.Msg("Вошли в DrawChanceF через анонимную n3");
 				
-				$.Schedule(8.5, function() {
-					$.Msg("Вошли в Schedule через анонимную n3");
-					DrawChanceMy();
-					VhodVJopy();
-				});			
+				// $.Schedule(8.5, function() {
+					// $.Msg("Вошли в Schedule через анонимную n3");
+					// DrawChanceMy();
+					// VhodVJopy();
+				// });			
 				
-			})();
+			// })();
 		
-		} catch (err) {					
-			$.Msg("Вошли в DrawChanceF через 3й трай и получили ошибку: ", err);
-		}
+		// } catch (err) {					
+			// $.Msg("Вошли в DrawChanceF через 3й трай и получили ошибку: ", err);
+		// }
 		
-	}
+	// }
+	
+	$.Msg("data.type: ", data.type);
 
     /*START-DRAWSTAT*/	
 
@@ -819,7 +821,7 @@ function OnBattleInfo(data) {
 
             pve_warning_ele.text = 'Ебать меня в сраку, да это же ' + round_descriptions[cur_round];			
 			
-			$.Schedule(1.5, function(){
+			$.Schedule(5, function(){
                 $.Msg("Current mob wave: " + round_descriptions_chat[cur_round]);
 				Game.ServerCmd("say Current mob wave: " + round_descriptions_chat[cur_round]);
             });
