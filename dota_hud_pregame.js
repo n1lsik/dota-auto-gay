@@ -673,11 +673,14 @@ function OnShowTime(keys) {
 		
 		// Test add Select tag
 		
-        var template_select = '<select id="test123" style="font-size: 22px; font-weight: bold; margin-left: 15px; margin-top: -5px;"><option>Пункт 1</option><option>Пункт 2</option></select>';
-        parentPanelPortrait.BCreateChildren(template_select); 
+        // var template_select = '<select id="test123" style="font-size: 22px; font-weight: bold; margin-left: 15px; margin-top: -5px;"><option>Пункт 1</option><option>Пункт 2</option></select>';
+        // parentPanelPortrait.BCreateChildren(template_select); 
 		
-		var template_select = '<ListPanel/>';
+		var template_select = '<RadioButton text="Тест Тест Тест" id="test123" style="font-size: 22px; font-weight: bold; margin-left: 15px; margin-top: -5px;"/>';
         parentPanelPortrait.BCreateChildren(template_select); 		
+		
+		var template_select2 = '<ToggleButton text="Тест Тест Тест Тест" id="test1234" style="font-size: 22px; font-weight: bold; margin-left: 15px; margin-top: -5px;"/>';
+        parentPanelPortrait.BCreateChildren(template_select2); 		
 		
 		// end
 
