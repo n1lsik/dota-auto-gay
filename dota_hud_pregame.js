@@ -39,7 +39,7 @@ var user_list = [];
 function getCurrentChamps() {
 
     //check if enemy is alive after a battle round
-    if ( enemies_steam_ids) {
+    if (enemies_steam_ids) {
         for ( var i in enemies_steam_ids ) {
             //is dead, remove it
             if ( !Entities.IsAlive(enemies_steam_ids[i].entity) ) {
@@ -689,37 +689,40 @@ function OnShowTime(keys) {
     }
 }
 
-function DrawChanceMy() {
-	var courier_level = Entities.GetLevel(courier_id);
-	hero_counts = getCurrentChamps();	
-	size_cost_pool = get_total_size_of_pool(hero_counts, courier_level);
-	
-	$.Msg("Вошли в DrawChanceMy in FNC");
-	
-	$.Schedule(1, function() {
-	
-		$.Each(hero_id_list, function(item) {
-			var tmp_ele = find_dota_hud_element(item);
-			if (tmp_ele) {
-				var tmp_ret = calculate_draw_prop(item, hero_counts, courier_level, size_cost_pool);
-				var hero_perc_avail = tmp_ret[0];
-				tmp_ele.text = tmp_ret[2] + '-' + hero_perc_avail + '%';
-				
-				if (+tmp_ret[2] > 0) { 
-					tmp_ele.style['color'] = '#e74c3c'; 
-				}
-				
-				// $.Schedule(2, function() {
-					// tmp_ele.style['color'] = '#ffffff';
-				// });
-				
-				ChangeColorToCurTime(tmp_ele);
-				
-			} 
-		});
-	
-	});
-	
+var active_auto_pars = false;
+
+function DrawChanceMy() {	
+	if (active_auto_pars == true) {	
+		var courier_level = Entities.GetLevel(courier_id);
+		hero_counts = getCurrentChamps();	
+		size_cost_pool = get_total_size_of_pool(hero_counts, courier_level);
+		
+		$.Msg("Вошли в DrawChanceMy in FNC");
+		
+		$.Schedule(1, function() {
+		
+			$.Each(hero_id_list, function(item) {
+				var tmp_ele = find_dota_hud_element(item);
+				if (tmp_ele) {
+					var tmp_ret = calculate_draw_prop(item, hero_counts, courier_level, size_cost_pool);
+					var hero_perc_avail = tmp_ret[0];
+					tmp_ele.text = tmp_ret[2] + '-' + hero_perc_avail + '%';
+					
+					if (+tmp_ret[2] > 0) { 
+						tmp_ele.style['color'] = '#e74c3c'; 
+					}
+					
+					// $.Schedule(2, function() {
+						// tmp_ele.style['color'] = '#ffffff';
+					// });
+					
+					ChangeColorToCurTime(tmp_ele);
+					
+				} 
+			});
+		
+		});	
+	}
 }
 
 function ChangeColorToCurTime(el) {
@@ -733,7 +736,8 @@ function getRandomInt(min, max) {
 }
 
 function ReParseChance() {
-	try {			
+	try {		
+		
 		(VhodVJopy = function(){
 			
 			// $.Msg("Вошли в DrawChanceF через анонимную n3");
@@ -780,6 +784,9 @@ function OnBattleInfo(data) {
     /*START-DRAWSTAT*/
 	
 	if (cur_round > 0) {
+		
+		active_auto_pars = true;
+		
 		(Chater = function(){
 			$.Schedule(0.2, function() {							
 				var str = '';
