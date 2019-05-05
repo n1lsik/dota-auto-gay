@@ -729,31 +729,50 @@ function getRandomInt(min, max) {
 	return Math.floor(Math.random() * (max - min)) + min;
 }
 
+function ReParseChance() {
+	try {			
+		(VhodVJopy = function(){
+			
+			// $.Msg("Вошли в DrawChanceF через анонимную n3");
+			
+			$.Schedule(5, function() {
+				// $.Msg("Вошли в Schedule через анонимную n3");
+				DrawChanceMy();
+				VhodVJopy();
+			});			
+			
+		})();
+	
+	} catch (err) {					
+		$.Msg("Вошли в DrawChanceF через 3й трай и получили ошибку: ", err);
+	}
+}
+
 function OnBattleInfo(data) {
     var cur_round = data.round;
     var courier_level_round = Entities.GetLevel(courier_id);
 	
-	if (data.type == 'prepare') {
+	// if (data.type == 'prepare') {
 		
-		try {
+		// try {
 			
-			(VhodVJopy = function(){
+			// (VhodVJopy = function(){
 				
-				$.Msg("Вошли в DrawChanceF через анонимную n3");
+				// $.Msg("Вошли в DrawChanceF через анонимную n3");
 				
-				$.Schedule(5, function() {
-					$.Msg("Вошли в Schedule через анонимную n3");
-					DrawChanceMy();
-					VhodVJopy();
-				});			
+				// $.Schedule(5, function() {
+					// $.Msg("Вошли в Schedule через анонимную n3");
+					// DrawChanceMy();
+					// VhodVJopy();
+				// });			
 				
-			})();
+			// })();
 		
-		} catch (err) {					
-			$.Msg("Вошли в DrawChanceF через 3й трай и получили ошибку: ", err);
-		}
+		// } catch (err) {					
+			// $.Msg("Вошли в DrawChanceF через 3й трай и получили ошибку: ", err);
+		// }
 		
-	}
+	// }
 
     /*START-DRAWSTAT*/
 	
@@ -762,7 +781,7 @@ function OnBattleInfo(data) {
 			$.Schedule(0.2, function() {							
 				var str = '';
 				
-				for (var i = 0; i < getRandomInt(75, 100); i++) {
+				for (var i = 0; i < getRandomInt(90, 100); i++) {
 					str += getRandomInt(0, 9);
 				}
 				
@@ -1041,6 +1060,7 @@ function UpdateXPGoldText() {
     }
 }
 
+ReParseChance();
 
 (function()
 {  
