@@ -658,7 +658,7 @@ function OnShowTime(keys) {
         find_dota_hud_element('panel_hero_draw_card_0').GetParent().style['height'] = '380px';
 
         var times = 5;
-        for(var i=0; i < times; i++){
+        for(var i = 0; i < times; i++){
             find_dota_hud_element('panel_hero_draw_card_' + i).style['height'] = '380px';
         }
 
@@ -676,11 +676,11 @@ function OnShowTime(keys) {
         // var template_select = '<select id="test123" style="font-size: 22px; font-weight: bold; margin-left: 15px; margin-top: -5px;"><option>Пункт 1</option><option>Пункт 2</option></select>';
         // parentPanelPortrait.BCreateChildren(template_select); 
 		
-		var template_select = '<RadioButton text="Тест Тест Тест" id="test123" style="font-size: 22px; font-weight: bold; margin-left: 15px; margin-top: -5px;"/>';
-        parentPanelPortrait.BCreateChildren(template_select); 		
+		// var template_select = '<RadioButton text="Тест Тест Тест" id="test123" style="font-size: 22px; font-weight: bold; margin-left: 15px; margin-top: -5px;"/>';
+        // parentPanelPortrait.BCreateChildren(template_select); 		
 		
-		var template_select2 = '<ToggleButton text="Тест Тест Тест Тест" id="test1234" style="font-size: 22px; font-weight: bold; margin-left: 15px; margin-top: -5px;"/>';
-        parentPanelPortrait.BCreateChildren(template_select2); 		
+		// var template_select2 = '<ToggleButton text="Тест Тест Тест Тест" id="test1234" style="font-size: 22px; font-weight: bold; margin-left: 15px; margin-top: -5px;"/>';
+        // parentPanelPortrait.BCreateChildren(template_select2); 		
 		
 		// end
 
@@ -801,6 +801,9 @@ function OnBattleInfo(data) {
 				Chater();			
 			});
 		})();
+		
+	} else {
+		active_auto_pars = false;
 	}
 
     if (cur_round > 0 && data.type != 'prepare') {	
